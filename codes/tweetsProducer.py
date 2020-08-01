@@ -1,6 +1,7 @@
 #! /usr/bin/env python
 
 import twitter # pip install twitter
+import json
 
 
 def main():
@@ -8,8 +9,14 @@ def main():
     # Put here your Twitter API credentials obtained at https://apps.twitter.com/
 
     # Note: you need a Twitter account to create an app.
+    with open("config.json") as fichierDeConfig:
+      config = json.load(fichierDeConfig)
 
-    oauth = twitter.OAuth("token", "token_secret", "consumer_key", "consumer_secret")
+    #oauth = twitter.OAuth("token", "token_secret", "consumer_key", "consumer_secret")
+    oauth = twitter.OAuth(config["accessToken"],\
+                          config["accessTokenSecret"],\
+                          config["apiKey"],\
+                          config["apiSecretKey"])
 
     t = twitter.TwitterStream(auth=oauth)
 
