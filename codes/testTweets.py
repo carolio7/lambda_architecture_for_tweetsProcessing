@@ -2,7 +2,7 @@
 
 import twitter # pip install twitter
 import json
-
+import fastavro
 
 def main():
 
@@ -22,29 +22,31 @@ def main():
 
 
     sample_tweets_in_english = t.statuses.sample(language="en")
+    
+    maxLenList = 60
+    listTweets = []
+    # Read schema
+    schema = json.load(open("./schemaTweets.avsc"))
 
     for tweet in sample_tweets_in_english:
+    	if "delete" in tweet:
+    		# Deleted tweet events do not have any associated text
+    		continue
 
-       if "delete" in tweet:
+    	hashtags = [h['text'] for h in tweet["entities"]["hashtags"]]
 
-           # Deleted tweet events do not have any associated text
+    	if len(hashtags) > 0 :
+    		print(hashtags)
+    		listTweets.append(tweet)
+    		if len(listTweets) > maxLenList :
+    			with open("./exempleTweets.avro", 'wb') as avro_file:
+    				print("**************************************")
+    				print("Ecriture sauvegardes des fichiers sérialisés")
+    				fastavro.writer(avro_file, schema, listTweets)
+    				print("**************************************")
+    			
+    			listTweets = []
 
-           continue
-
-
-       # Tweet text
-
-       # print(tweet["text"])
-       #print(tweet)
-
-       # Collect hashtags
-
-       
-       hashtags = [h['text'] for h in tweet["entities"]["hashtags"]]
-
-       if len(hashtags) > 0:
-
-           print(hashtags)
       
 
 
