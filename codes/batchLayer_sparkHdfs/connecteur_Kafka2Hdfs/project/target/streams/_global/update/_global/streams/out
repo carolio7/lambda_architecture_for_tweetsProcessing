@@ -1,0 +1,3 @@
+[debug] "not up to date. inChanged = true, force = false
+[debug] Updating ProjectRef(uri("file:/home/maiky/Bureau/openclassroom/parcours_data_architect/projets/5_architecture_complete/codes/batchLayer_sparkHdfs/connecteur_Kafka2Hdfs/project/"), "connecteur_kafka2hdfs-build")...
+[debug] Done updating ProjectRef(uri("file:/home/maiky/Bureau/openclassroom/parcours_data_architect/projets/5_architecture_complete/codes/batchLayer_sparkHdfs/connecteur_Kafka2Hdfs/project/"), "connecteur_kafka2hdfs-build")

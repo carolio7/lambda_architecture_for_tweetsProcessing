@@ -1,0 +1,41 @@
+{
+    "namespace": "twitter.mavob",
+    "type": "record",
+    "name": "Tweets",
+    "fields": [
+        {"name": "created_at", "type": "string"},
+        {"name": "id", "type": "long"},
+        {"name": "text", "type": "string"},
+        
+        {
+            "name": "entities",
+            "type": {
+                "type": "record",
+                "name":"entite",
+                "fields": [
+                    {
+                        "name": "hashtags",
+                        "type": {
+                            "type": "array", 
+                            "items": [
+                                {
+                                    "type":"record",
+                                    "name":"item",
+                                    "fields":[
+                                        {"name": "text", "type": ["string","null"]},
+                                        {"name": "indices", "type": {"type":"array", "items":["int","null"]}}
+                                    ]
+                                },
+                                "null"
+                            ]
+                        }
+                    }
+                ]
+            }
+        
+        },
+        {"name": "lang", "type": ["string","null"]},
+        {"name": "timestamp_ms", "type": ["string","null"]}
+
+    ]
+}

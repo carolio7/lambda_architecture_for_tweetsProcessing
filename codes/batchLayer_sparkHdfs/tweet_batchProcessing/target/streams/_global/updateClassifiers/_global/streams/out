@@ -1,0 +1,4 @@
+[debug] "not up to date. inChanged = true, force = false
+[debug] Updating ProjectRef(uri("file:/home/maiky/Bureau/openclassroom/parcours_data_architect/projets/5_architecture_complete/codes/batchLayer_sparkHdfs/tweet_batchProcessing/"), "tweet_batchprocessing")...
+[debug] Done updating ProjectRef(uri("file:/home/maiky/Bureau/openclassroom/parcours_data_architect/projets/5_architecture_complete/codes/batchLayer_sparkHdfs/tweet_batchProcessing/"), "tweet_batchprocessing")
+[warn] There may be incompatibilities among your library dependencies; run 'evicted' to see detailed eviction warnings.
