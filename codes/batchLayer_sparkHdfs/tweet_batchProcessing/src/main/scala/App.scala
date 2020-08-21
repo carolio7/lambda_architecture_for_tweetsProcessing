@@ -20,7 +20,7 @@ object App {
     // Lecture du flux kafka
     val df = spark.read
       .format("avro")
-      .load("hdfs://localhost:8000/data/twitter/full/date=2020-08-19/heure=13")
+      .load("hdfs://localhost:8000/data/twitter/full/date=2020-08-19/heure=17")
 
     // Mettre chaque élement de  la liste en Rows
     val exploded_df = df.selectExpr("explode(entities.hashtags)")
@@ -34,5 +34,14 @@ object App {
       .limit(10)
 
     htag_df.show(true)
+
+    htag_df.write.format("mongo")
+      .mode("append")
+      .option("uri","mongodb://localhost:27017")
+      .option("database","twitter")
+      .option("collection","batchView")
+      .save()
+
+    println("Fin de l'ecriture!!!")
   }
 }
