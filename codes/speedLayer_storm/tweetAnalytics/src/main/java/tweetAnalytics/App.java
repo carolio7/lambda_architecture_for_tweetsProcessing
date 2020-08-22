@@ -9,6 +9,9 @@ import org.apache.storm.generated.InvalidTopologyException;
 import org.apache.storm.generated.StormTopology;
 import org.apache.storm.kafka.spout.KafkaSpout;
 import org.apache.storm.kafka.spout.KafkaSpoutConfig;
+import org.apache.storm.mongodb.bolt.MongoUpdateBolt;
+import org.apache.storm.mongodb.common.SimpleQueryFilterCreator;
+import org.apache.storm.mongodb.common.mapper.SimpleMongoUpdateMapper;
 import org.apache.storm.topology.TopologyBuilder;
 import org.apache.storm.topology.base.BaseWindowedBolt;
 
@@ -18,9 +21,13 @@ import org.apache.storm.topology.base.BaseWindowedBolt;
  */
 public class App 
 {
-    public static void main( String[] args ) throws Exception, AlreadyAliveException, 
+	private static final String url = "mongodb://localhost:27017/twitter";
+    private static final String collectionName = "speedView";
+    
+	public static void main( String[] args ) throws Exception, AlreadyAliveException, 
     	InvalidTopologyException, AuthorizationException, InterruptedException
     {
+        
     	TopologyBuilder builder = new TopologyBuilder();
     	
     	KafkaSpoutConfig.Builder<String, String> spoutConfigBuilderTwit = KafkaSpoutConfig
@@ -34,6 +41,19 @@ public class App
         	//.fieldsGrouping("city-stats", new Fields("city"));
         builder.setBolt("save-results",  new SaveResultsBolt())
         	.shuffleGrouping("counterTweets");
+        
+        builder.setBolt (
+				"sendToMongo", 
+				new MongoUpdateBolt(
+										url, 
+										collectionName,
+										new SimpleQueryFilterCreator().withField("date"),
+										new SimpleMongoUpdateMapper().withFields("date", "topDixHashtags", "nbMessagesPosted")
+									)
+									.withUpsert(true)
+			)
+			.shuffleGrouping("counterTweets");
+        
         
         
     	StormTopology topology = builder.createTopology();

@@ -19,5 +19,6 @@ Il faut donc:
 #3.Utilisation:
     - Installer l'API python de Twitter avec: pip install twitter
             Puis lancer le producer avec python: python tweetsProducer.py
+            !Attention: N'oubliez pas de renseigner vos accès à l'API Twitter dans le producer.py
     - Démarrer l'application spark connectant Kafka->HDFS avec la commamnde: spark-submit --class Connecteur --master local ./target/scala-2.12/connecteurkafka2hdfs_2.12-0.1.jar
     - 
