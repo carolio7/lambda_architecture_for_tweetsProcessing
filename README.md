@@ -19,6 +19,11 @@ Il faut donc:
 #3.Utilisation:
     - Installer l'API python de Twitter avec: pip install twitter
             Puis lancer le producer avec python: python tweetsProducer.py
-            !Attention: N'oubliez pas de renseigner vos accès à l'API Twitter dans le producer.py
+            !Attention: N'oubliez pas de renseigner vos accès à l'API Twitter dans producer.py
+            
     - Démarrer l'application spark connectant Kafka->HDFS avec la commamnde: spark-submit --class Connecteur --master local ./target/scala-2.12/connecteurkafka2hdfs_2.12-0.1.jar
+
+    - Démmarrer l'analyse en batch avec: spark-submit --class App --master local ./target/scala-2.12/tweet_batchprocessing_2.12-0.1.jar
+
+    - Pour soumettre l'application storm en fichier jar au cluster: ~/Bureau/data_Architect/storm/apache-storm-2.1.0/bin/storm jar ./target/tweetAnalytics-1.0-SNAPSHOT.jar tweetAnalytics.App remote
     - 
