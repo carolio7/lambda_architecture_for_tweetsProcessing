@@ -36,19 +36,21 @@ public class App
     	builder.setSpout("tweetsKafkaSpout", new KafkaSpout<String, String>(spoutConfigTwit));
         
     	// Traitement des Tweets
-        builder.setBolt("counterTweets", new StatTweetBolt().withTumblingWindow(BaseWindowedBolt.Duration.minutes(1)))
+        builder.setBolt("counterTweets", new StatTweetBolt().withTumblingWindow(BaseWindowedBolt.Duration.minutes(5)))
     		.shuffleGrouping("tweetsKafkaSpout");
         	//.fieldsGrouping("city-stats", new Fields("city"));
-        builder.setBolt("save-results",  new SaveResultsBolt())
+        /*
+        builder.setBolt("printer-results",  new PrintResultsBolt())
         	.shuffleGrouping("counterTweets");
+        */
         
         builder.setBolt (
-				"sendToMongo", 
+				"mongoSender", 
 				new MongoUpdateBolt(
 										url, 
 										collectionName,
-										new SimpleQueryFilterCreator().withField("date"),
-										new SimpleMongoUpdateMapper().withFields("date", "topDixHashtags", "nbMessagesPosted")
+										new SimpleQueryFilterCreator().withField("date_debut"),
+										new SimpleMongoUpdateMapper().withFields("date_debut", "date_fin", "topDixHashtags", "nbMessagesPosted")
 									)
 									.withUpsert(true)
 			)
@@ -59,7 +61,7 @@ public class App
     	StormTopology topology = builder.createTopology();
         Config config = new Config();
         //maximum time given to the topology to fully process a message emitted by a spout
-        config.setMessageTimeoutSecs(60*70);
+        config.setMessageTimeoutSecs(60*70*3);
         config.put("topology.producer.batch.size", 1);
         config.put("topology.transfer.batch.size", 1);
         String topologyName = "tweetsRealTimeAnalysis";

@@ -26,7 +26,7 @@ object Connecteur {
   def main(args: Array[String]): Unit = {
     // Je définis l'addresse de HDFS
     val addr_hdfs = "hdfs://localhost:8000"
-    val checkpointLocation: String = addr_hdfs + "/tmp/temporary-" + UUID.randomUUID.toString
+    val checkpointLocation: String = addr_hdfs + "/tmp/checkpoint-" + UUID.randomUUID.toString
 
     // On parse le schéma avro pour le convertir en Structype
     //Le dataframe obtenu sera calqué à l'image de notre schéma avro
@@ -63,7 +63,9 @@ object Connecteur {
       .option("checkpointLocation", checkpointLocation)
       .start()
 
+    println(downstream.lastProgress)
     downstream.awaitTermination()
+    println("processus arreté !!! Au revoir.")
   }
 
 }

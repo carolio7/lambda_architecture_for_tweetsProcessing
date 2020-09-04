@@ -4,7 +4,7 @@
 		module="connecteurkafka2hdfs_2.12"
 		revision="0.1"
 		status="integration"
-		publication="20200818232246"
+		publication="20200827121022"
 	>
 		<description>
 		connecteurKafka2Hdfs
@@ -32,13 +32,14 @@
 	<dependencies>
 		<dependency org="org.scala-lang" name="scala-compiler" rev="2.12.3" conf="scala-tool->default,optional(default)"/>
 		<dependency org="org.scala-lang" name="scala-library" rev="2.12.3" conf="scala-tool->default,optional(default);compile->default(compile)"/>
-		<dependency org="org.apache.spark" name="spark-core_2.12" rev="3.0.0-preview2" conf="compile->default(compile)"/>
-		<dependency org="org.apache.spark" name="spark-sql_2.12" rev="3.0.0-preview2" conf="compile->default(compile)"/>
-		<dependency org="org.apache.spark" name="spark-streaming-kafka-0-10_2.12" rev="3.0.0-preview2" conf="compile->default(compile)"/>
-		<dependency org="org.apache.spark" name="spark-streaming_2.12" rev="3.0.0-preview2" conf="compile->default(compile)"/>
-		<dependency org="org.apache.spark" name="spark-avro_2.12" rev="3.0.0-preview2" conf="compile->default(compile)"/>
+		<dependency org="org.apache.spark" name="spark-core_2.12" rev="3.0.0" conf="compile->default(compile)"/>
+		<dependency org="org.apache.spark" name="spark-sql_2.12" rev="3.0.0" conf="compile->default(compile)"/>
+		<dependency org="org.apache.spark" name="spark-streaming_2.12" rev="3.0.0" conf="compile->default(compile)"/>
+		<dependency org="org.apache.spark" name="spark-avro_2.12" rev="3.0.0" conf="compile->default(compile)"/>
+		<dependency org="org.apache.spark" name="spark-sql-kafka-0-10_2.12" rev="3.0.0" conf="compile->default(compile)"/>
+		<dependency org="org.apache.spark" name="spark-streaming-kafka-0-10_2.12" rev="3.0.0" conf="compile->default(compile)"/>
 		<dependency org="org.apache.kafka" name="kafka-clients" rev="2.6.0" conf="compile->default(compile)"/>
-		<dependency org="org.apache.spark" name="spark-streaming-kafka-0-10-assembly_2.12" rev="3.0.0-preview2" conf="compile->default(compile)"/>
+		<dependency org="org.apache.spark" name="spark-streaming-kafka-0-10-assembly_2.12" rev="3.0.0" conf="compile->default(compile)"/>
 		<dependency org="org.apache.commons" name="commons-pool2" rev="2.8.1" conf="compile->default(compile)"/>
 	</dependencies>
 </ivy-module>

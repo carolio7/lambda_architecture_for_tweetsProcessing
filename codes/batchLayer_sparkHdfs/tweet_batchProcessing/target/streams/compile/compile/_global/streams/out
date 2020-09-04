@@ -1,0 +1,6 @@
+[0m[[0m[31merror[0m] [0m[0m/home/maiky/Bureau/openclassroom/parcours_data_architect/projets/5_architecture_complete/codes/batchLayer_sparkHdfs/tweet_batchProcessing/src/main/scala/App.scala:32:49: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : org.apache.hadoop.fs.Path[0m
+[0m[[0m[31merror[0m] [0m[0m required: String[0m
+[0m[[0m[31merror[0m] [0m[0m        .foreach(unDir => traiterUneheureDonnee(unDir))  //unDir.toString[0m
+[0m[[0m[31merror[0m] [0m[0m                                                ^[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m

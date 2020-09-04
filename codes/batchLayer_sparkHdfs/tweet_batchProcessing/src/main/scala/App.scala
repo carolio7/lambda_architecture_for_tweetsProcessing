@@ -29,7 +29,7 @@ object App {
       fs.listStatus(new Path(date_jour))
         .filter(_.isDirectory)
         .map(_.getPath)
-        .foreach(unDir => traiterUneheureDonnee(unDir.toString))
+        .foreach(unDir => traiterUneheureDonnee(unDir.toString)) 
 
       println("Fin de l'ecriture!!!")
     } else {
@@ -41,7 +41,7 @@ object App {
   def traiterUneheureDonnee( hourPathInHdfs: String) : Unit = {
     // Exctraction de date et heure à partir du regex
     val regexDate = "date=(\\d{4}-\\d{2}-\\d{2})".r.unanchored
-    val regexHeure = "heure=(\\d{2})".r.unanchored
+    val regexHeure = "heure=(\\d{0,2})".r.unanchored
     val regexDate(date) = hourPathInHdfs
     val regexHeure(heure) = hourPathInHdfs
     val heureDebut = heure.toInt
@@ -63,7 +63,7 @@ object App {
       .groupBy("hashtags").count()
       .orderBy(col("count").desc)
       .limit(10)
-      .withColumn("date", lit(date).cast(DateType))
+      .withColumn("date", lit(date).cast(StringType))
       .withColumn("heureDebut", lit(heureDebut.toString + "h:00m:00s"))
       .withColumn("heureFin", lit(heureFin.toString + "h:00m:00s"))
 

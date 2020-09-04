@@ -22,8 +22,14 @@ Il faut donc:
             !Attention: N'oubliez pas de renseigner vos accès à l'API Twitter dans producer.py
             
     - Démarrer l'application spark connectant Kafka->HDFS avec la commamnde: spark-submit --class Connecteur --master local ./target/scala-2.12/connecteurkafka2hdfs_2.12-0.1.jar
+    
+    !!!! Après avoir lancé la première fois l'appli kafka->HDFS, on n'arrive pas à écrire dans le repertoire HDFS.
+	Ceci est dû au blockage d'accès en écriture du repertoire "checkpointLocation".
+	Pour résoudre cela, il faut changer l'accès en accès du repertoir "/tmp" avec la commande: hdfs dfs -chmod 777 /tmp 
+	
 
     - Démmarrer l'analyse en batch avec: spark-submit --class App --master local ./target/scala-2.12/tweet_batchprocessing_2.12-0.1.jar
+    		spark-submit --class App --master local ./target/scala-2.12/tweet_batchprocessing_2.12-0.1.jar date=2020-08-24
 
     - Pour soumettre l'application storm en fichier jar au cluster: ~/Bureau/data_Architect/storm/apache-storm-2.1.0/bin/storm jar ./target/tweetAnalytics-1.0-SNAPSHOT.jar tweetAnalytics.App remote
     - 

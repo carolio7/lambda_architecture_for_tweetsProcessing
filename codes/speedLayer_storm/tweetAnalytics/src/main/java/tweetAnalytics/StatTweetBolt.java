@@ -1,6 +1,5 @@
 package tweetAnalytics;
 
-import java.text.SimpleDateFormat;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
@@ -38,30 +37,50 @@ public class StatTweetBolt extends BaseWindowedBolt {
 		
 		// Collect stats for all tuples, city by city, station by station
 		Integer tupleCount = 0;
+		Long timestamp_debut = null, timestamp_fin = null; 
 		for(Tuple input : inputWindow.get()) {
 			try {
 				//System.out.println(input);
 				JSONParser jsonParser = new JSONParser();
 				JSONObject jsonInput = (JSONObject)jsonParser.parse(input.getStringByField("value"));
 				
-				JSONObject entities = (JSONObject)jsonInput.get("entities");
-				JSONArray hashtagArray = (JSONArray)entities.get("hashtags");
-				for (int i=0; i < hashtagArray.size(); i++) {
-					String unHashtag = new String();
-					JSONObject unHashtagJson = (JSONObject)hashtagArray.get(i);
-					unHashtag = (String)unHashtagJson.get("text");
-					if (!isNullOrEmpty(unHashtag)) {
-						//if key do not exists, put 1 as value otherwise sum 1 to the value linked to key
-						hashtagReceived.merge(unHashtag, 1, Integer::sum);
-					}
+				String timestamps_ms_String = (String)jsonInput.get("timestamp_ms");
+				if (!isNullOrEmpty(timestamps_ms_String)) {
+					Long timestamp_ms = Long.valueOf(timestamps_ms_String);
+					timestamp_debut = minimal_timestamp(timestamp_ms, timestamp_debut);
+					timestamp_fin = maximal_timestamp(timestamp_ms, timestamp_fin);
 				}
 				
-				outputCollector.ack(input);
-				tupleCount += 1;
-			} catch (ParseException e) {
-				e.printStackTrace();
-				outputCollector.fail(input);
+				// On ne traite que les messages en anglais
+				String langue = (String)jsonInput.get("lang");
+				if (isNullOrEmpty(langue) || langue.equals("en")) {
+					JSONObject entities = (JSONObject)jsonInput.get("entities");
+					if (entities != null) {
+						JSONArray hashtagArray = (JSONArray)entities.get("hashtags");
+						if (!hashtagArray.isEmpty()) {
+							System.out.println("La taille de hashtagArray est de : " + hashtagArray.size());
+							for (int i=0; i < hashtagArray.size(); i++) {
+								String unHashtag = new String();
+								JSONObject unHashtagJson = (JSONObject)hashtagArray.get(i);
+								unHashtag = (String)unHashtagJson.get("text");
+								if (!isNullOrEmpty(unHashtag)) {
+									System.out.println("-------> " + unHashtag);
+									//if key do not exists, put 1 as value otherwise sum 1 to the value linked to key
+									hashtagReceived.merge(unHashtag, 1, Integer::sum);
+								}
+							}
+						}
+					}
+					
+				}
+				
+			} catch (Exception e) {
+				//e.printStackTrace();
+				System.out.println("Une exception trouvée, fais gaffe !! ");
 			}
+			
+			outputCollector.ack(input);
+			tupleCount += 1;
 		}
 		
 		System.out.printf("====== StatTweetBolt: Received %d messages postés\n", tupleCount);
@@ -73,10 +92,12 @@ public class StatTweetBolt extends BaseWindowedBolt {
 	    						 LinkedHashMap::new));
 		
 		LinkedHashMap<String, Integer> topDixHashtags = selectNpremiers(sortedMap, 10);
-		String now = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+		
+		Date date_debut = new Date(timestamp_debut);
+		Date date_fin = new Date(timestamp_fin);
 		
 		// Emettre les top 10 des hashtags
-		outputCollector.emit(new Values(now, topDixHashtags, tupleCount));
+		outputCollector.emit(new Values(date_debut, date_fin, topDixHashtags, tupleCount));
 		
 	}
 	
@@ -91,6 +112,26 @@ public class StatTweetBolt extends BaseWindowedBolt {
             return false;
         return true;
     }
+	
+	public Long minimal_timestamp(Long current_timestamp, Long current_minimum) {
+		if (current_minimum == null) {
+			current_minimum = current_timestamp;
+		} else if (current_minimum > current_timestamp) {
+			current_minimum = current_timestamp;
+		}
+		return current_minimum;
+	}
+	
+	
+	public Long maximal_timestamp(Long current_timestamp, Long current_maximum) {
+		if (current_maximum == null) {
+			current_maximum = current_timestamp;
+		} else if (current_maximum < current_timestamp) {
+			current_maximum = current_timestamp;
+		}
+		return current_maximum;
+	}
+	
 	
 	
 	public static LinkedHashMap<String, Integer> selectNpremiers(Map<String, Integer> map, int taille) {
@@ -112,7 +153,7 @@ public class StatTweetBolt extends BaseWindowedBolt {
 	
 	@Override
 	public void declareOutputFields(OutputFieldsDeclarer declarer) {
-		declarer.declare(new Fields("date", "topDixHashtags", "nbMessagesPosted"));
+		declarer.declare(new Fields("date_debut", "date_fin", "topDixHashtags", "nbMessagesPosted"));
 	}
 
 }
