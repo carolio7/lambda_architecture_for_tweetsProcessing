@@ -1,0 +1,25 @@
+/data/
+
+	.snapshot/*
+	twitter/
+
+			schemaTweets.avsc
+	
+			full/
+				date=2020-09-03/
+				
+				date=2020-09-04/
+				
+				date=2020-09-05/
+							heure=0/
+									*.avro
+									
+							heure=1/
+									*.avro	
+
+							heure=23/
+									*.avro						
+			test/
+				*.avro
+						
+/tmp/

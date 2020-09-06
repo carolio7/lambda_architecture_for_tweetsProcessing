@@ -38,24 +38,23 @@ public class App
     	// Traitement des Tweets
         builder.setBolt("counterTweets", new StatTweetBolt().withTumblingWindow(BaseWindowedBolt.Duration.minutes(5)))
     		.shuffleGrouping("tweetsKafkaSpout");
-        	//.fieldsGrouping("city-stats", new Fields("city"));
-        /*
-        builder.setBolt("printer-results",  new PrintResultsBolt())
-        	.shuffleGrouping("counterTweets");
-        */
-        
+        // Envoi au serveur mongoDB
         builder.setBolt (
 				"mongoSender", 
 				new MongoUpdateBolt(
 										url, 
 										collectionName,
 										new SimpleQueryFilterCreator().withField("date_debut"),
-										new SimpleMongoUpdateMapper().withFields("date_debut", "date_fin", "topDixHashtags", "nbMessagesPosted")
+										new SimpleMongoUpdateMapper().withFields("date_debut", "date_fin", "hashtags", "nbTotalMessagesPosted")
 									)
 									.withUpsert(true)
 			)
 			.shuffleGrouping("counterTweets");
         
+        /*
+        builder.setBolt("printer-results",  new PrintResultsBolt())
+            .shuffleGrouping("counterTweets");
+        */
         
         
     	StormTopology topology = builder.createTopology();

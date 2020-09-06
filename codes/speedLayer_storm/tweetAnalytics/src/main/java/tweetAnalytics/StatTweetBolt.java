@@ -12,7 +12,6 @@ import java.util.stream.Collectors;
 import org.apache.storm.shade.org.json.simple.JSONArray;
 import org.apache.storm.shade.org.json.simple.JSONObject;
 import org.apache.storm.shade.org.json.simple.parser.JSONParser;
-import org.apache.storm.shade.org.json.simple.parser.ParseException;
 import org.apache.storm.task.OutputCollector;
 import org.apache.storm.task.TopologyContext;
 import org.apache.storm.topology.OutputFieldsDeclarer;
@@ -53,18 +52,16 @@ public class StatTweetBolt extends BaseWindowedBolt {
 				
 				// On ne traite que les messages en anglais
 				String langue = (String)jsonInput.get("lang");
-				if (isNullOrEmpty(langue) || langue.equals("en")) {
+				if (langue.equals("en")) {
 					JSONObject entities = (JSONObject)jsonInput.get("entities");
 					if (entities != null) {
 						JSONArray hashtagArray = (JSONArray)entities.get("hashtags");
 						if (!hashtagArray.isEmpty()) {
-							System.out.println("La taille de hashtagArray est de : " + hashtagArray.size());
 							for (int i=0; i < hashtagArray.size(); i++) {
 								String unHashtag = new String();
 								JSONObject unHashtagJson = (JSONObject)hashtagArray.get(i);
 								unHashtag = (String)unHashtagJson.get("text");
 								if (!isNullOrEmpty(unHashtag)) {
-									System.out.println("-------> " + unHashtag);
 									//if key do not exists, put 1 as value otherwise sum 1 to the value linked to key
 									hashtagReceived.merge(unHashtag, 1, Integer::sum);
 								}
@@ -75,8 +72,8 @@ public class StatTweetBolt extends BaseWindowedBolt {
 				}
 				
 			} catch (Exception e) {
-				//e.printStackTrace();
-				System.out.println("Une exception trouvée, fais gaffe !! ");
+				e.printStackTrace();
+				outputCollector.fail(input);
 			}
 			
 			outputCollector.ack(input);
@@ -91,15 +88,36 @@ public class StatTweetBolt extends BaseWindowedBolt {
 	    				 .toMap(Entry::getKey, Entry::getValue,(e1, e2) -> e1, 
 	    						 LinkedHashMap::new));
 		
+		// Filtrer les dix premier
 		LinkedHashMap<String, Integer> topDixHashtags = selectNpremiers(sortedMap, 10);
 		
 		Date date_debut = new Date(timestamp_debut);
 		Date date_fin = new Date(timestamp_fin);
 		
-		// Emettre les top 10 des hashtags
-		outputCollector.emit(new Values(date_debut, date_fin, topDixHashtags, tupleCount));
+		// Emettre les 10 hashtags dans un JSONArray
+		// Cela facilitera leur regroupement et filtrage avec sparkSQL
+		JSONArray htagJsonArray =new JSONArray();
+		for (Map.Entry<String, Integer> unHashtag: topDixHashtags.entrySet()) {
+			String cle = unHashtag.getKey();
+			Integer valeur = unHashtag.getValue();
+			JSONObject jo = new JSONObject();
+			jo.put("hashtagUsed", cle);
+			jo.put("quantite", valeur);
+			htagJsonArray.add(jo);
+			
+		}
+		//System.out.println(htagJsonArray);
+		outputCollector.emit(new Values(date_debut, date_fin, htagJsonArray, tupleCount));
 		
 	}
+	
+	
+	@Override
+	public void declareOutputFields(OutputFieldsDeclarer declarer) {
+		declarer.declare(new Fields("date_debut", "date_fin", "hashtags", "nbTotalMessagesPosted"));
+	}
+	
+	
 	
 	
 	
@@ -150,10 +168,5 @@ public class StatTweetBolt extends BaseWindowedBolt {
 	    return result;
 	}
 	
-	
-	@Override
-	public void declareOutputFields(OutputFieldsDeclarer declarer) {
-		declarer.declare(new Fields("date_debut", "date_fin", "topDixHashtags", "nbMessagesPosted"));
-	}
 
 }

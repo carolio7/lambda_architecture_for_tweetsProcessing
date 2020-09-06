@@ -30,6 +30,10 @@ Il faut donc:
 
     - Démmarrer l'analyse en batch avec: spark-submit --class App --master local ./target/scala-2.12/tweet_batchprocessing_2.12-0.1.jar
     		spark-submit --class App --master local ./target/scala-2.12/tweet_batchprocessing_2.12-0.1.jar date=2020-08-24
+    	
+    	!! : N'oubliez pas de mettre à jour la date en fonction de cette existant dans votre HDFS
 
     - Pour soumettre l'application storm en fichier jar au cluster: ~/Bureau/data_Architect/storm/apache-storm-2.1.0/bin/storm jar ./target/tweetAnalytics-1.0-SNAPSHOT.jar tweetAnalytics.App remote
+    
+    
     - 

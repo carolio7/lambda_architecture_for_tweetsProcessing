@@ -1,0 +1,205 @@
+***********************************************************************************************
+Le 2020-09-06 entre 0:00:00 et 1:00:00, ci-dessous les hashtags les plus utilisés: 
++--------------------+--------------+
+|         hashtagUsed|sum(quantitee)|
++--------------------+--------------+
+|   ArtistoftheSummer|           782|
+|             BBNaija|           246|
+|             BBNajia|           126|
+|    TurnUpWithLaycon|            88|
+|                 BTS|            74|
+|             bbnaija|            69|
+|   SayangAdminShopee|            31|
+|23YrsofSENSATiONA...|            29|
+|      BBNaijaShallWe|            27|
+|            Dumbkirk|            25|
++--------------------+--------------+
+
+***********************************************************************************************
+Le 2020-09-06 entre 1:00:00 et 2:00:00, ci-dessous les hashtags les plus utilisés: 
++-----------------+--------------+
+|      hashtagUsed|sum(quantitee)|
++-----------------+--------------+
+|ArtistoftheSummer|           670|
+|          BBNajia|           255|
+|          BBNaija|           239|
+|              BTS|            89|
+|          bbnaija|            60|
+|         IceCream|            53|
+|MostRequestedLive|            39|
+| TurnUpWithLaycon|            38|
+|       방탄소년단|            31|
+|SayangAdminShopee|            28|
++-----------------+--------------+
+
+***********************************************************************************************
+Le 2020-09-06 entre 2:00:00 et 3:00:00, ci-dessous les hashtags les plus utilisés: 
++--------------------+--------------+
+|         hashtagUsed|sum(quantitee)|
++--------------------+--------------+
+|   ArtistoftheSummer|           960|
+|             BTSARMY|           331|
+|             BBNaija|           306|
+|        BTS_Dynamite|           296|
+|             BBNajia|           181|
+|           AEWAllOut|           179|
+|23YrsofSENSATiONA...|            80|
+|                 BTS|            75|
+|             bbnaija|            73|
+|      SooraraiPottru|            71|
++--------------------+--------------+
+
+***********************************************************************************************
+Le 2020-09-06 entre 3:00:00 et 4:00:00, ci-dessous les hashtags les plus utilisés: 
++--------------------+--------------+
+|         hashtagUsed|sum(quantitee)|
++--------------------+--------------+
+|   ArtistoftheSummer|           893|
+|23YrsofSENSATiONA...|           302|
+|      SooraraiPottru|           242|
+|           AEWAllOut|           211|
+|             BBNaija|           158|
+|             BTSARMY|           111|
+|        BTS_Dynamite|           107|
+|                 BTS|           107|
+|   MostRequestedLive|            48|
+|           UFCVegas9|            37|
++--------------------+--------------+
+
+***********************************************************************************************
+Le 2020-09-06 entre 4:00:00 et 5:00:00, ci-dessous les hashtags les plus utilisés: 
++--------------------+--------------+
+|         hashtagUsed|sum(quantitee)|
++--------------------+--------------+
+|   ArtistoftheSummer|          1196|
+|23YrsofSENSATiONA...|           392|
+|      SooraraiPottru|           316|
+|2दिनबाद_संतरामपाल...|           180|
+|             BTSARMY|           110|
+|           AEWAllOut|           108|
+|             BBNaija|            82|
+|                 BTS|            82|
+|            IceCream|            68|
+|        BTS_Dynamite|            62|
++--------------------+--------------+
+
+***********************************************************************************************
+Le 2020-09-06 entre 5:00:00 et 6:00:00, ci-dessous les hashtags les plus utilisés: 
++--------------------+--------------+
+|         hashtagUsed|sum(quantitee)|
++--------------------+--------------+
+|   ArtistoftheSummer|          1277|
+|23YrsofSENSATiONA...|           438|
+|      SooraraiPottru|           387|
+|2दिनबाद_संतरामपाल...|           137|
+|           AEWAllOut|           118|
+|            IceCream|           102|
+|        ShamelessTV9|            80|
+|                 BTS|            67|
+|  हलाल_हटाओ_देश_बचाओ|            66|
+|             BTSARMY|            59|
++--------------------+--------------+
+
+***********************************************************************************************
+Le 2020-09-06 entre 6:00:00 et 7:00:00, ci-dessous les hashtags les plus utilisés: 
++--------------------+--------------+
+|         hashtagUsed|sum(quantitee)|
++--------------------+--------------+
+|   ArtistoftheSummer|          1419|
+|23YrsofSENSATiONA...|           551|
+|      SooraraiPottru|           474|
+|        ShamelessTV9|           192|
+|  7YrsOfEvergreenVVS|            95|
+|2दिनबाद_संतरामपाल...|            78|
+|      หกฉากครับจารย์|            71|
+|                 BTS|            60|
+|           bbrightvc|            57|
+|SpeakUpForUPSSSCS...|            47|
++--------------------+--------------+
+
+***********************************************************************************************
+Le 2020-09-06 entre 7:00:00 et 8:00:00, ci-dessous les hashtags les plus utilisés: 
++--------------------+--------------+
+|         hashtagUsed|sum(quantitee)|
++--------------------+--------------+
+|     DestinedSidNaaz|          1965|
+|   ArtistoftheSummer|          1269|
+|23YrsofSENSATiONA...|           559|
+|      SooraraiPottru|           510|
+|        ShamelessTV9|           180|
+|HappyBreakfastDay...|           135|
+|  7YrsOfEvergreenVVS|            91|
+|                SB19|            68|
+|             SidNaaz|            43|
+|SpeakUpForPunjabA...|            42|
++--------------------+--------------+
+
+***********************************************************************************************
+Le 2020-09-06 entre 8:00:00 et 9:00:00, ci-dessous les hashtags les plus utilisés: 
++--------------------+--------------+
+|         hashtagUsed|sum(quantitee)|
++--------------------+--------------+
+|     DestinedSidNaaz|          2069|
+|   ArtistoftheSummer|          1110|
+|23YrsofSENSATiONA...|           481|
+|      SooraraiPottru|           440|
+|        ShamelessTV9|           192|
+|                 BTS|            92|
+|HappyBreakfastDay...|            76|
+|SpeakUpForPunjabA...|            69|
+|                SB19|            43|
+|  7YrsOfEvergreenVVS|            43|
++--------------------+--------------+
+
+***********************************************************************************************
+Le 2020-09-06 entre 9:00:00 et 10:00:00, ci-dessous les hashtags les plus utilisés: 
++--------------------+--------------+
+|         hashtagUsed|sum(quantitee)|
++--------------------+--------------+
+|     DestinedSidNaaz|          1436|
+|   ArtistoftheSummer|           804|
+|23YrsofSENSATiONA...|           466|
+|      SooraraiPottru|           370|
+|        ShamelessTV9|           181|
+|      Dynamite6thWin|           105|
+|                 BTS|            86|
+|                 NCT|            49|
+|        9Baje9Minute|            46|
+|    RheaChakraborthy|            46|
++--------------------+--------------+
+
+***********************************************************************************************
+Le 2020-09-06 entre 10:00:00 et 11:00:00, ci-dessous les hashtags les plus utilisés: 
++--------------------+--------------+
+|         hashtagUsed|sum(quantitee)|
++--------------------+--------------+
+|     DestinedSidNaaz|          1300|
+|   ArtistoftheSummer|           568|
+|23YrsofSENSATiONA...|           405|
+|      SooraraiPottru|           354|
+|        ShamelessTV9|           221|
+|        9Baje9Minute|           138|
+|               SEHUN|            93|
+|      Dynamite6thWin|            83|
+|    RheaChakraborthy|            74|
+|                 BTS|            44|
++--------------------+--------------+
+
+***********************************************************************************************
+Le 2020-09-06 entre 11:00:00 et 12:00:00, ci-dessous les hashtags les plus utilisés: 
++--------------------+--------------+
+|         hashtagUsed|sum(quantitee)|
++--------------------+--------------+
+|     DestinedSidNaaz|          1334|
+|23YrsofSENSATiONA...|           503|
+|   ArtistoftheSummer|           452|
+|      SooraraiPottru|           451|
+|        ShamelessTV9|           205|
+|             Valimai|           160|
+|        9Baje9Minute|           146|
+|             SidNaaz|            96|
+|    RheaChakraborthy|            61|
+| PILIkulaIvyLivesEp1|            48|
++--------------------+--------------+
+
+Fin de l'affichage !
