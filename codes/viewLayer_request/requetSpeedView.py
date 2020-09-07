@@ -1,4 +1,6 @@
 #! /usr/bin/env python
+# @carolio7
+#
 
 import sys
 from pyspark import SparkContext
@@ -10,10 +12,6 @@ from pyspark.sql.functions import explode
 sc = SparkContext()
 spark = SparkSession.builder.config("spark.sql.broadcastTimeout", "36000").getOrCreate()
 
-
-df = spark.read.format("mongo").option("uri","mongodb://127.0.0.1/twitter.speedView").load()
-#df.printSchema()
-df.persist()
 
 
 def afficherTopTenInTime(dataframe, date, heure_debut_int, heure_fin_int):
@@ -44,13 +42,29 @@ def afficherTopTenInTime(dataframe, date, heure_debut_int, heure_fin_int):
 	print("Le {0} entre {1}:00:00 et {2}:00:00, ci-dessous les hashtags les plus utilisés: ".format(date, heure_debut_int, heure_fin_int))
 
 	result_df.show()
-
 	df1.unpersist()
 
 
-# On parcours toutes les heure depuis minuit
-for x in range(12):
-  afficherTopTenInTime(df, '2020-09-06', x, x+1)
 
 
-print("Fin de l'affichage ! ")
+def main():
+
+	date = sys.argv[1]	# Sous forme 2020-09-15
+
+	df = spark.read.format("mongo").option("uri","mongodb://127.0.0.1/twitter.speedView").load()
+	#df.printSchema()
+	df.persist()
+
+	# On parcours toutes les heure depuis minuit
+	for x in range(12):
+		afficherTopTenInTime(df, date, x, x+1)
+
+
+	print("Fin de l'affichage ! ")
+	df.unpersist()
+
+
+
+
+if __name__ == "__main__":
+    main()

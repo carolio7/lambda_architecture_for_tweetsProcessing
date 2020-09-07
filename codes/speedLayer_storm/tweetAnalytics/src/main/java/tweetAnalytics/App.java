@@ -16,7 +16,7 @@ import org.apache.storm.topology.TopologyBuilder;
 import org.apache.storm.topology.base.BaseWindowedBolt;
 
 /**
- * Hello world!
+ * @carolio7
  *
  */
 public class App 

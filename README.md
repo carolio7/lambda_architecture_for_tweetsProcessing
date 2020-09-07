@@ -34,6 +34,11 @@ Il faut donc:
     	!! : N'oubliez pas de mettre à jour la date en fonction de cette existant dans votre HDFS
 
     - Pour soumettre l'application storm en fichier jar au cluster: ~/Bureau/data_Architect/storm/apache-storm-2.1.0/bin/storm jar ./target/tweetAnalytics-1.0-SNAPSHOT.jar tweetAnalytics.App remote
+
+#4.Résutlats:  
+    - Voir les résultat dans speedView: spark-submit ./requetSpeedView.py 2020-09-18
+    
+    - Voir les résultat dans batchView: spark-submit ./requetBatchView.py 2020-09-18 10
     
     
     - 
