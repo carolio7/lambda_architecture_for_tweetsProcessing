@@ -11,8 +11,8 @@ Il faut donc:
 
 
 # 2.Etapes de traitement:
-    
-    ![Architecture fonctionnelle](https://github.com/carolio7/lambda_architecture_for_tweetsProcessing/blob/master/architecture_fonctionnelle_simplified.png)
+
+![Architecture fonctionnelle](https://github.com/carolio7/lambda_architecture_for_tweetsProcessing/blob/master/architecture_fonctionnelle_simplified.png)
     
     1. Les données temps-réel seront envoyées à un cluster Kafka pour à la fois être stockées dans un système de fichiers distribués (HDFS) et transférées à un pipeline Storm.
     2. Batch layer: les données présentes dans HDFS seront analysées périodiquement et par lot (“batch”) par des jobs MapReduce (Hadoop ou Spark).
