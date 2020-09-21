@@ -1,6 +1,6 @@
-###Développement architecture Big Data complete des tweets
+### Développement architecture Big Data complete des tweets
 
-#1.Présentation du sujet:
+# 1.Présentation du sujet:
 Dans ce projet, nous allons créer un outil qui permet de lister les dix hashtags les plus fréquents sur Twitter pour chaque heure.
 
 Il faut donc:
@@ -10,16 +10,16 @@ Il faut donc:
     4. valider la robustesse architecturale de la solution proposée
 
 
-#2.Etapes de traitement:
-    
-    ![Architecture fonctionnelle](https://github.com/carolio7/lambda_architecture_for_tweetsProcessing/blob/master/architecture_fonctionnelle_simplified.png)
+# 2.Etapes de traitement:
+
+![Architecture fonctionnelle](https://github.com/carolio7/lambda_architecture_for_tweetsProcessing/blob/master/architecture_fonctionnelle_simplified.png)
     
     1. Les données temps-réel seront envoyées à un cluster Kafka pour à la fois être stockées dans un système de fichiers distribués (HDFS) et transférées à un pipeline Storm.
     2. Batch layer: les données présentes dans HDFS seront analysées périodiquement et par lot (“batch”) par des jobs MapReduce (Hadoop ou Spark).
     3. View layer: le résultat de ces jobs MapReduce sera stocké dans MongoDb.
     4. Speed layer: les données traitées par le pipeline Storm/Kafka seront stockées dans MongoDb. Les données rendues inutiles par l’exécution des tâches de la batch layer devront être effacées au moment opportun.
 
-#3.Utilisation:
+# 3.Utilisation:
     - Installer l'API python de Twitter avec: pip install twitter
             Puis lancer le producer avec python: python tweetsProducer.py
             !Attention: N'oubliez pas de renseigner vos accès à l'API Twitter dans producer.py
@@ -38,7 +38,7 @@ Il faut donc:
 
     - Pour soumettre l'application storm en fichier jar au cluster: ~/Bureau/data_Architect/storm/apache-storm-2.1.0/bin/storm jar ./target/tweetAnalytics-1.0-SNAPSHOT.jar tweetAnalytics.App remote
 
-#4.Résutlats:  
+# 4.Résutlats:  
     - Voir les résultat dans speedView: spark-submit ./requetSpeedView.py 2020-09-18
     
     - Voir les résultat dans batchView: spark-submit ./requetBatchView.py 2020-09-18 10
